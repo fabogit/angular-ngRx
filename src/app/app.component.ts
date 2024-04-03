@@ -17,8 +17,10 @@ import {
 })
 export class AppComponent implements OnInit {
   loading = true;
+  isLoggedIn$: Observable<boolean>;
+  isLoggedOut$: Observable<boolean>;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private store: Store) { }
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
@@ -39,7 +41,25 @@ export class AppComponent implements OnInit {
         }
       }
     });
+
+    this.isLoggedIn$ = this.store
+      .pipe(
+        map(
+          // if user -> true if !user -> false
+          (state) => !!state["auth"].user
+        )
+      );
+
+    this.isLoggedOut$ = this.store
+      .pipe(
+        map(
+          // if user -> false if !user -> true
+          (state) => !state["auth"].user
+        )
+      );
+
+    // this.store.subscribe(state => console.log('store state', state));
   }
 
-  logout() {}
+  logout() { }
 }
