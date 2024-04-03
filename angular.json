@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-ngrx-course": {
+    "angular-ngrx": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "angular-ngrx-course:build"
+            "buildTarget": "angular-ngrx:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "angular-ngrx-course:build:production"
+              "buildTarget": "angular-ngrx:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "angular-ngrx-course:build"
+            "buildTarget": "angular-ngrx:build"
           }
         },
         "test": {
@@ -88,10 +88,19 @@
               "src/favicon.ico"
             ]
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     },
-    "angular-ngrx-course-e2e": {
+    "angular-ngrx-e2e": {
       "root": "",
       "sourceRoot": "",
       "projectType": "application",
@@ -100,7 +109,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "angular-ngrx-course:serve"
+            "devServerTarget": "angular-ngrx:serve"
           }
         }
       }
