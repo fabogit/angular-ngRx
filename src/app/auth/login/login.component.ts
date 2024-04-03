@@ -9,6 +9,7 @@ import { tap } from "rxjs/operators";
 import { AuthService } from "../auth.service";
 
 import { AppState } from "../reducers";
+import { login } from "../auth.actions";
 
 @Component({
   selector: "login",
@@ -43,8 +44,7 @@ export class LoginComponent implements OnInit {
           user => {
             console.log(user);
 
-            // TODO
-            this.store.dispatch(action);
+            this.store.dispatch(login({ user }));
 
             this.router.navigateByUrl('/courses');
           }
