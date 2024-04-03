@@ -23,10 +23,7 @@ import { AuthService } from "./auth.service";
     MatInputModule,
     MatButtonModule,
     RouterModule.forChild([{ path: "", component: LoginComponent }]),
-    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducers, {
-      // not using for now
-      // metaReducers: fromAuth.metaReducers,
-    }),
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer),
   ],
   declarations: [LoginComponent],
   exports: [LoginComponent],
