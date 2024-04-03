@@ -9,8 +9,8 @@ import {
 
 export const authFeatureKey = "auth";
 
-export interface State {}
+export interface AppState {}
 
-export const reducers: ActionReducerMap<State> = {};
+export const reducers: ActionReducerMap<AppState> = {};
 
 // export const metaReducers: MetaReducer<State>[] = isDevMode() ? [] : [];
