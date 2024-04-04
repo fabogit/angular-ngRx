@@ -4,10 +4,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule } from "@ngrx/store";
-import { EffectsModule } from "@ngrx/effects";
-import { EntityDataModule } from "@ngrx/data";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { RouterState, StoreRouterConnectingModule } from "@ngrx/router-store";
 
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
@@ -20,12 +17,13 @@ import { AppComponent } from "./app.component";
 
 import { AuthModule } from "./auth/auth.module";
 
-import { environment } from "../environments/environment";
+import { AuthGuard } from "./auth/auth.guard";
 
 
 const routes: Routes = [
   {
     path: "courses",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       // lazy loading courses.module only when needed
       import("./courses/courses.module").then((m) => m.CoursesModule),

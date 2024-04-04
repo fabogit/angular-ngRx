@@ -14,6 +14,7 @@ import * as fromAuth from "./reducers";
 import { LoginComponent } from "./login/login.component";
 
 import { AuthService } from "./auth.service";
+import { AuthGuard } from "./auth.guard";
 
 @NgModule({
   imports: [
@@ -32,7 +33,10 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
-      providers: [AuthService],
+      providers: [
+        AuthService,
+        AuthGuard,
+      ],
     };
   }
 }
