@@ -9,6 +9,7 @@ import {
   Router,
 } from "@angular/router";
 import { isLoggedIn, isLoggedOut } from "./auth/auth.selectors";
+import { logout } from "./auth/auth.actions";
 
 @Component({
   selector: "app-root",
@@ -48,5 +49,7 @@ export class AppComponent implements OnInit {
     // this.store.subscribe(state => console.log('store state', state));
   }
 
-  logout() { }
+  logout() {
+    this.store.dispatch(logout())
+   }
 }
