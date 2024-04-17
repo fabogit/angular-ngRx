@@ -5,6 +5,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule } from "@ngrx/effects";
+import { RouterState, StoreRouterConnectingModule } from "@ngrx/router-store";
 
 import { MatMenuModule } from "@angular/material/menu";
 import { MatIconModule } from "@angular/material/icon";
@@ -18,7 +20,8 @@ import { AppComponent } from "./app.component";
 import { AuthModule } from "./auth/auth.module";
 
 import { AuthGuard } from "./auth/auth.guard";
-import { EffectsModule } from "@ngrx/effects";
+
+import { metaReducers, reducers } from "./reducers";
 
 
 const routes: Routes = [
@@ -50,9 +53,13 @@ const routes: Routes = [
     MatToolbarModule,
     // Loading AuthModule at startup
     AuthModule.forRoot(),
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers, { metaReducers }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+      routerState: RouterState.Minimal,
+    })
   ],
   bootstrap: [AppComponent],
 })
