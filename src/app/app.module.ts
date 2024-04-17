@@ -18,6 +18,7 @@ import { AppComponent } from "./app.component";
 import { AuthModule } from "./auth/auth.module";
 
 import { AuthGuard } from "./auth/auth.guard";
+import { EffectsModule } from "@ngrx/effects";
 
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
     AuthModule.forRoot(),
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]),
   ],
   bootstrap: [AppComponent],
 })
